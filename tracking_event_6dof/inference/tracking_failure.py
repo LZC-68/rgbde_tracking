@@ -20,11 +20,11 @@ if __name__ == '__main__':
         '-e', '--modele', help="Path to save event network", required=False,
         default="/home/lzc/PycharmProjects/RGBDE/rgbde_tracking-master/model/event")
     parser.add_argument('-d', '--dataset',
-                        help="Path to datasets", required=False)
+                        help="Path to datasets", required=False, default="path")
     parser.add_argument('-m', '--model3d',
-                        help="Path to 3D model", required=False)
+                        help="Path to 3D model", required=False, default="path")
     parser.add_argument('-a', '--animation',
-                        help="Path to save tracking video", required=False)
+                        help="Path to save tracking video", required=False, default="path")
 
     arguments = parser.parse_args()
 
