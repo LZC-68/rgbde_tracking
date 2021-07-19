@@ -14,13 +14,15 @@ import yaml
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Tracking failures')
     parser.add_argument(
-        '-f', '--modelf', help="Path to save RGB network", required=True)
+        '-f', '--modelf', help="Path to save RGB network", required=False,
+        default="~/rgbde_tracking-master/model/frame")
     parser.add_argument(
-        '-e', '--modele', help="Path to save event network", required=True)
+        '-e', '--modele', help="Path to save event network", required=False,
+        default="/home/lzc/PycharmProjects/RGBDE/rgbde_tracking-master/model/event")
     parser.add_argument('-d', '--dataset',
-                        help="Path to datasets", required=True)
+                        help="Path to datasets", required=False)
     parser.add_argument('-m', '--model3d',
-                        help="Path to 3D model", required=True)
+                        help="Path to 3D model", required=False)
     parser.add_argument('-a', '--animation',
                         help="Path to save tracking video", required=False)
 
@@ -44,10 +46,11 @@ if __name__ == '__main__':
         loader_event = RGBDELoader(os.path.join(
             datasets_path, seq_name), is_frame=False)
 
-        vpRender = Render(loader_frame.camera, image_size=frame_size,
+        shader_path = "~/Six_DOF_tracking_evaluation/ulaval_6dof_object_tracking/utils/shader"
+        vpRender = Render(loader_frame.camera, shader_path, image_size=frame_size,
                           model_path=model_3d_path)
 
-        if animation_path:
+        if animation_path:  # "/home/lzc/RGBDE/Reimplement
             assert os.path.isdir(animation_path)
             animation = Animation((2, 1), os.path.join(animation_path, f'{seq_name}.mp4'), vpRender,
                                   ['Deeptrack (Garon et al.)', 'Ours'])
@@ -61,7 +64,8 @@ if __name__ == '__main__':
         tracker_frame = TrackerFrame(
             model_frame_path, initial_pose, vpRender, loader_frame.camera)
         tracker_hybrid = TrackerHybrid(model_frame_path, model_event_path, initial_pose,
-                                       vpRender, loader_event.event_camera, loader_frame.camera, transform=loader_event.matrix_transformation)
+                                       vpRender, loader_event.event_camera, loader_frame.camera,
+                                       transform=loader_event.matrix_transformation)
 
         comparator.add_tracker_single(
             tracker_frame, loader_event, loader_frame)

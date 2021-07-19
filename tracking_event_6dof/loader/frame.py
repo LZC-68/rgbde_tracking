@@ -5,8 +5,8 @@ import numpy as np
 import torch
 
 from tracking_event_6dof.utils.data import delta_transform
-from ulaval_6dof_object_tracking.utils.frame import Frame
-from ulaval_6dof_object_tracking.utils.transform import Transform
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.frame import Frame
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.transform import Transform
 
 
 class Poses:

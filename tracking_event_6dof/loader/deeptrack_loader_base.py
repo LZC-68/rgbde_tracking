@@ -6,8 +6,11 @@ import numpy as np
 
 from tqdm import tqdm
 
-from ulaval_6dof_object_tracking.utils.transform import Transform
-from pytorch_toolbox.loader_base import LoaderBase
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.transform import Transform
+
+
+
+from pytorch_toolbox.pytorch_toolbox.loader_base import LoaderBase
 
 from tracking_event_6dof.utils.camera import Camera
 from tracking_event_6dof.loader.frame import EventsRaw, Poses, PosesNumpy, FrameNumpy, FrameNone

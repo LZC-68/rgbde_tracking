@@ -6,8 +6,8 @@ from PIL import Image
 from enum import Enum
 import random
 
-from ulaval_6dof_object_tracking.utils.data import compute_2Dboundingbox
-from ulaval_6dof_object_tracking.utils.transform import Transform
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.data import compute_2Dboundingbox
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.transform import Transform
 from tracking_event_6dof.utils.data import delta_transform
 
 

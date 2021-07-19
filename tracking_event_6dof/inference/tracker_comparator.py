@@ -3,8 +3,8 @@ from enum import Enum, auto
 from tqdm import tqdm
 import numpy as np
 import matplotlib.pyplot as plt
-from ulaval_6dof_object_tracking.utils.transform import Transform
-from ulaval_6dof_object_tracking.evaluate_sequence import eval_pose_error
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.transform import Transform
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.evaluate_sequence import eval_pose_error
 from collections.abc import Iterable
 
 

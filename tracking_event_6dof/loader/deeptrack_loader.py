@@ -8,7 +8,7 @@ from tracking_event_6dof.loader.frame import FrameNone
 from tracking_event_6dof.utils.camera import Camera
 from tracking_event_6dof.utils.data import delta_transform
 
-from ulaval_6dof_object_tracking.utils.transform import Transform
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.transform import Transform
 
 
 class RGBDELoader(DeepTrackLoaderBase):

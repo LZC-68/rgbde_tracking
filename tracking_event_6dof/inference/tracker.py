@@ -4,12 +4,15 @@ import torch.nn.functional as F
 import yaml
 import os
 
-from ulaval_6dof_object_tracking.deeptrack.deeptrack_net import DeepTrackNet
-from ulaval_6dof_object_tracking.utils.data import normalize_scale, combine_view_transform, compute_2Dboundingbox
-from ulaval_6dof_object_tracking.utils.transform import Transform
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.deeptrack.deeptrack_net import DeepTrackNet
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.data import normalize_scale, combine_view_transform, \
+    compute_2Dboundingbox
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.transform import Transform
 
 from tracking_event_6dof.network.deeptrack_net import DeepTrackNetSpike
-from tracking_event_6dof.loader.data_augmentation import OffsetDepth, NormalizeEvent, CropBoundingBox, EventSpikeTensor, NormalizeFrame
+from tracking_event_6dof.loader.data_augmentation import OffsetDepth, NormalizeEvent, CropBoundingBox, EventSpikeTensor, \
+    NormalizeFrame
+
 
 class Tracker:
     def __init__(self, model, model_path, pose_origin, render, camera, channel_in=0):
@@ -38,7 +41,8 @@ class Tracker:
                     image_size=self.image_size[0], channel_in=channel_in)
             else:
                 model = model(image_size=self.image_size[0])
-            model.load(model_path)
+            #model.load(model_path)
+            model.load_state_dict(torch.load(model_path)['state_dict'], strict=True)
             model.eval()
             if torch.cuda.is_available():
                 model.cuda()
@@ -110,8 +114,8 @@ class TrackerFrame(Tracker):
             rgbd = np.concatenate((rgb, depth[:, :, np.newaxis]), axis=2)
             rgbd = torch.tensor(rgbd.astype(int)).permute(2, 1, 0).float()
             for index_j in range(4):
-                rgbd[index_j] -= mean[index_i*4+index_j]
-                rgbd[index_j] /= std[index_i*4+index_j]
+                rgbd[index_j] -= mean[index_i * 4 + index_j]
+                rgbd[index_j] /= std[index_i * 4 + index_j]
             frames.append(rgbd)
         return frames
 
@@ -151,7 +155,8 @@ class TrackerEvent(Tracker):
 
 
 class TrackerHybrid(Tracker):
-    def __init__(self, model_frame_path, model_event_path, pose_origin, render, camera_event, camera_frame, transform=None):
+    def __init__(self, model_frame_path, model_event_path, pose_origin, render, camera_event, camera_frame,
+                 transform=None):
         super().__init__(None, model_frame_path, pose_origin, render, None)
 
         self.transform = transform

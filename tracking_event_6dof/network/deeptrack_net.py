@@ -1,7 +1,7 @@
 import torch.nn.functional as F
 import torch
 import torch.nn as nn
-from pytorch_toolbox.network_base import NetworkBase
+from pytorch_toolbox.pytorch_toolbox.network_base import NetworkBase
 import numpy as np
 
 
@@ -21,7 +21,7 @@ class Fire(nn.Module):
         self.expand1x1_activation = nn.ReLU(inplace=True)
         self.expand3x3 = nn.Conv2d(squeeze_planes, expand3x3_planes,
                                    kernel_size=3, padding=1)
-        self.expand3x3_activation = nn.ReLU(inplace=True)
+        self.expand3x3_activation = nn.ReLU(inplace=False)
 
     def forward(self, x):
         x = self.squeeze_activation(self.squeeze(x))

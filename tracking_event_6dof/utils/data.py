@@ -2,8 +2,8 @@ import numpy as np
 import numpy as np
 from pyquaternion import Quaternion
 
-from ulaval_6dof_object_tracking.utils.data import combine_view_transform
-from tracking_event_6dof.utils.quaternion_transform import QuaternionTransform
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.data import combine_view_transform
+#from tracking_event_6dof.utils.quaternion_transform import QuaternionTransform
 
 
 def compute_3D_project_points(pose, scale_size=230, scale=(1, 1, 1)):

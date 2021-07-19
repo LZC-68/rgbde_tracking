@@ -3,8 +3,7 @@ import yaml
 import json
 import os
 
-from ulaval_6dof_object_tracking.utils.camera import Camera as CameraDeeptrack
-
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.camera import Camera as CameraDeeptrack
 
 class Camera(CameraDeeptrack):
     @staticmethod

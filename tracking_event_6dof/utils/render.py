@@ -2,17 +2,17 @@ import argparse
 import os
 import numpy as np
 
-from ulaval_6dof_object_tracking.utils.transform import Transform
-from ulaval_6dof_object_tracking.utils.camera import Camera
-from ulaval_6dof_object_tracking.utils.data import combine_view_transform, normalize_scale, compute_2Dboundingbox
-from ulaval_6dof_object_tracking.utils.model_renderer import ModelRenderer
-from ulaval_6dof_object_tracking.utils.plyparser import PlyParser
-from ulaval_6dof_object_tracking.utils.pointcloud import maximum_width
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.transform import Transform
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.camera import Camera
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.data import combine_view_transform, normalize_scale, compute_2Dboundingbox
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.model_renderer import ModelRenderer
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.plyparser import PlyParser
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.pointcloud import maximum_width
 from tracking_event_6dof.utils.data import compute_3D_project_points
 
 
 class Render:
-    def __init__(self, camera, shader_path=None,
+    def __init__(self, camera, shader_path,
                  model_path="/dataset/3D_models/dragon", image_size=(174, 174)):
 
         self.camera = camera

@@ -6,7 +6,7 @@ from skimage.transform import resize
 from PIL import Image, ImageDraw, ImageFont
 
 from tracking_event_6dof.utils.data import calculate_center_pose
-from ulaval_6dof_object_tracking.utils.data import normalize_scale
+from Six_DOF_tracking_evaluation.ulaval_6dof_object_tracking.utils.data import normalize_scale
 
 
 class Animation:
